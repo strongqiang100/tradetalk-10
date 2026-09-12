@@ -1,0 +1,1133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TradeTalk 10 外贸英语听说训练器</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f6f68'/%3E%3Cpath d='M16 20h32v18H28l-8 7v-7h-4z' fill='%23fff7df'/%3E%3Cpath d='M23 27h18M23 33h12' stroke='%231f6f68' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #18211f;
+      --muted: #65716e;
+      --line: #d7dfdc;
+      --paper: #f8faf9;
+      --surface: #ffffff;
+      --surface-2: #eef5f2;
+      --green: #1f6f68;
+      --green-2: #154f4a;
+      --yellow: #f1bd48;
+      --orange: #da7b34;
+      --blue: #3b6f9d;
+      --red: #b84c4c;
+      --shadow: 0 10px 28px rgba(20, 34, 30, .08);
+      font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    a { color: var(--green-2); }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    button, .link-button {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink);
+      min-height: 40px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    button:hover, .link-button:hover { border-color: var(--green); }
+    button:disabled { cursor: not-allowed; opacity: .5; }
+
+    .primary {
+      background: var(--green);
+      border-color: var(--green);
+      color: #fff;
+    }
+
+    .ghost {
+      background: transparent;
+    }
+
+    .danger {
+      border-color: rgba(184, 76, 76, .35);
+      color: var(--red);
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: end;
+      padding: 12px 0 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .status {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      white-space: nowrap;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 20px;
+      padding-top: 20px;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .side {
+      position: sticky;
+      top: 16px;
+      align-self: start;
+      padding: 14px;
+    }
+
+    .day-list {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      margin: 12px 0 16px;
+    }
+
+    .day-btn {
+      min-height: 38px;
+      padding: 0;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    .day-btn.active {
+      background: var(--green);
+      border-color: var(--green);
+      color: white;
+    }
+
+    .day-btn.done {
+      background: var(--surface-2);
+      border-color: rgba(31, 111, 104, .28);
+    }
+
+    .progress-line {
+      height: 10px;
+      background: var(--surface-2);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 8px 0 16px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--green), var(--yellow));
+      transition: width .2s ease;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .content {
+      display: grid;
+      gap: 16px;
+    }
+
+    .today {
+      padding: 18px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .lesson-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .lesson-title {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 36px);
+      line-height: 1.15;
+    }
+
+    .timer-box {
+      min-width: 170px;
+      text-align: right;
+    }
+
+    .timer {
+      font-size: 34px;
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      background: var(--paper);
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--green-2);
+    }
+
+    .phrase-grid {
+      display: grid;
+      gap: 8px;
+    }
+
+    .phrase {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+    }
+
+    .en {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .zh {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 2px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      padding: 16px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 112px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      background: var(--surface);
+      color: var(--ink);
+    }
+
+    .scenario {
+      border-left: 4px solid var(--yellow);
+      padding: 10px 12px;
+      background: #fff8e6;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .source-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .source {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .source:last-child {
+      border-bottom: none;
+    }
+
+    .resource-group {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .resource-group:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      margin-left: 8px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--green-2);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .metric {
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--green-2);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: var(--ink);
+      color: white;
+      border-radius: 999px;
+      padding: 9px 14px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease;
+      z-index: 10;
+    }
+
+    .toast.show { opacity: 1; }
+
+    @media (max-width: 900px) {
+      header, main, .lesson-head, .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .status, .timer-box {
+        justify-content: flex-start;
+        text-align: left;
+      }
+
+      .side {
+        position: static;
+      }
+
+      .flow {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .metric-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { padding: 14px; }
+      .flow { grid-template-columns: 1fr; }
+      .metric-grid { grid-template-columns: 1fr; }
+      .day-list { grid-template-columns: repeat(4, 1fr); }
+      .phrase { grid-template-columns: 1fr; }
+      .actions button, .actions a { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>TradeTalk 10</h1>
+        <p class="subtitle">外贸英语 20 天听说训练器。每天 10 分钟，按今天的卡片走：盲听、看词、跟读、复述、模拟客户问答。重点不是学很多，而是每天减少一点真实沟通里的卡顿。</p>
+      </div>
+      <div class="status" aria-live="polite">
+        <span class="pill" id="startLabel">未设置开始日</span>
+        <span class="pill" id="doneLabel">完成 0/20</span>
+      </div>
+    </header>
+
+    <main>
+      <aside class="panel side">
+        <h2>训练日历</h2>
+        <div class="progress-line" aria-label="整体进度">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="day-list" id="dayList"></div>
+        <div class="actions">
+          <button class="primary" id="setStart">从今天开始</button>
+          <button class="ghost" id="todayBtn">跳到今天</button>
+          <button class="danger" id="resetBtn">清空记录</button>
+        </div>
+        <p class="small">建议每天固定同一时间打开本页。学完点“完成今天”，明天会自动进入下一天。</p>
+      </aside>
+
+      <section class="content">
+        <section class="panel today" aria-live="polite">
+          <div class="lesson-head">
+            <div>
+              <p class="small" id="dayMeta">Day 1 / 20</p>
+              <h2 class="lesson-title" id="lessonTitle"></h2>
+              <p id="lessonGoal"></p>
+              <div class="scenario" id="scenario"></div>
+            </div>
+            <div class="timer-box">
+              <div class="small">10 分钟训练</div>
+              <div class="timer" id="timer">10:00</div>
+              <div class="actions" style="justify-content:flex-end;margin-top:8px">
+                <button id="timerBtn" class="primary">开始</button>
+                <button id="timerReset" class="ghost">重置</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flow" aria-label="今日流程">
+            <div class="step"><strong>1. 盲听</strong><span>先听材料或本页句子，不看中文。</span></div>
+            <div class="step"><strong>2. 看词</strong><span>看英文句子，把没听出的词标出来。</span></div>
+            <div class="step"><strong>3. 跟读</strong><span>每句跟读 2 遍，模仿停顿。</span></div>
+            <div class="step"><strong>4. 复述</strong><span>用 20-60 秒讲今天场景。</span></div>
+          </div>
+
+          <div class="actions">
+            <button class="primary" id="playAll">播放今日 5 句</button>
+            <button id="copyPrompt">复制 ChatGPT 口语陪练提示</button>
+            <a class="link-button" id="sourceLink" href="#" target="_blank" rel="noreferrer">打开今日材料</a>
+            <button id="completeBtn">完成今天</button>
+          </div>
+        </section>
+
+        <section class="card-grid">
+          <div class="panel card">
+            <h2>今日 5 句</h2>
+            <div class="phrase-grid" id="phraseGrid"></div>
+          </div>
+
+          <div class="panel card">
+            <h2>听写 / 口语记录</h2>
+            <p class="small">听一句后写下来，或者点“开始识别”说一遍。识别功能取决于浏览器，Chrome/Edge 通常更稳。</p>
+            <textarea id="notes" placeholder="这里写你今天听到的句子、复述内容、客户可能会问的问题。"></textarea>
+            <div class="actions" style="margin-top:10px">
+              <button id="speechBtn">开始识别</button>
+              <button id="saveNotes">保存记录</button>
+              <button id="clearNotes" class="ghost">清空本页记录</button>
+            </div>
+            <p class="small" id="speechStatus"></p>
+          </div>
+        </section>
+
+        <section class="panel card">
+          <h2>今天交给 AI 的陪练任务</h2>
+          <p id="aiPromptPreview"></p>
+          <div class="actions">
+            <button id="copyPrompt2" class="primary">复制这段提示</button>
+            <a class="link-button" href="https://chatgpt.com/" target="_blank" rel="noreferrer">打开 ChatGPT</a>
+          </div>
+        </section>
+
+        <section class="panel card">
+          <h2>指标与复盘</h2>
+          <div class="metric-grid">
+            <div class="metric"><strong>完成率</strong><span>20 天里完成多少天，不补课也不内疚，继续往前走。</span></div>
+            <div class="metric"><strong>跟读句数</strong><span>每天 5 句，先把外贸高频句练到嘴巴熟。</span></div>
+            <div class="metric"><strong>60 秒复述</strong><span>能不能不用中文提示，把当天场景讲完。</span></div>
+            <div class="metric"><strong>客户问答</strong><span>记录最卡的一问，第二天优先复练。</span></div>
+          </div>
+        </section>
+
+        <section class="panel card">
+          <h2>资源入口</h2>
+          <div class="resource-group">
+            <h3>每天练习用</h3>
+            <div class="source-list">
+              <div class="source">
+                <div><strong>VOA Learning English</strong><span class="tag">慢速输入</span><div class="small">前 1-7 天用，语速慢，适合先建立听力信心。</div></div>
+                <a href="https://learningenglish.voanews.com/" target="_blank" rel="noreferrer">打开</a>
+              </div>
+              <div class="source">
+                <div><strong>VOA Let's Learn English</strong><span class="tag">初级课程</span><div class="small">有连续课程、视频、口语和词汇练习，适合听力基础较弱时兜底。</div></div>
+                <a href="https://learningenglish.voanews.com/p/5644.html" target="_blank" rel="noreferrer">打开</a>
+              </div>
+              <div class="source">
+                <div><strong>VOA English in a Minute</strong><span class="tag">1 分钟表达</span><div class="small">短视频解释常用口语和习语，适合碎片时间听一遍。</div></div>
+                <a href="https://learningenglish.voanews.com/z/3619" target="_blank" rel="noreferrer">打开</a>
+              </div>
+              <div class="source">
+                <div><strong>BBC Learning English</strong><span class="tag">泛听加餐</span><div class="small">6 Minute English、The English We Speak 等栏目适合周末补充。</div></div>
+                <a href="https://www.bbc.co.uk/learningenglish" target="_blank" rel="noreferrer">打开</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-group">
+            <h3>外贸与商务场景</h3>
+            <div class="source-list">
+              <div class="source">
+                <div><strong>British Council Business English</strong><span class="tag">商务主线</span><div class="small">第 8 天后用，补商务场景、邮件、职场表达和听力任务。</div></div>
+                <a href="https://learnenglish.britishcouncil.org/free-resources/business" target="_blank" rel="noreferrer">打开</a>
+              </div>
+              <div class="source">
+                <div><strong>British Council English for Emails</strong><span class="tag">邮件跟进</span><div class="small">练询盘、确认、安排、礼貌开头结尾，适合会后跟进。</div></div>
+                <a href="https://learnenglish.britishcouncil.org/en/english-emails" target="_blank" rel="noreferrer">打开</a>
+              </div>
+              <div class="source">
+                <div><strong>Business English Pod</strong><span class="tag">会议销售</span><div class="small">会议、电话、谈判、presentation、销售异议等场景丰富。</div></div>
+                <a href="https://www.businessenglishpod.com/" target="_blank" rel="noreferrer">打开</a>
+              </div>
+              <div class="source">
+                <div><strong>Business English Pod - Telephoning</strong><span class="tag">电话会议</span><div class="small">专门练电话、视频会、会议确认和线上沟通。</div></div>
+                <a href="https://www.businessenglishpod.com/category/telephoning/" target="_blank" rel="noreferrer">打开</a>
+              </div>
+              <div class="source">
+                <div><strong>Business English Pod - Presentations</strong><span class="tag">产品介绍</span><div class="small">练产品展示、公司介绍和客户演示的表达框架。</div></div>
+                <a href="https://www.businessenglishpod.com/category/presentations/" target="_blank" rel="noreferrer">打开</a>
+              </div>
+              <div class="source">
+                <div><strong>Business English Pod - Sales</strong><span class="tag">销售问答</span><div class="small">练客户异议、价值解释、下一步推进。</div></div>
+                <a href="https://www.businessenglishpod.com/category/sales/" target="_blank" rel="noreferrer">打开</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-group">
+            <h3>AI 与开源工具</h3>
+            <div class="source-list">
+              <div class="source">
+                <div><strong>ChatGPT Voice</strong><span class="tag">口语陪练</span><div class="small">把本页提示复制进去，让 AI 扮演海外客户一问一答。</div></div>
+                <a href="https://chatgpt.com/" target="_blank" rel="noreferrer">打开</a>
+              </div>
+              <div class="source">
+                <div><strong>YouGlish</strong><span class="tag">真实发音</span><div class="small">查 MOQ、lead time、quotation、sample 等词在真实视频里的发音。</div></div>
+                <a href="https://youglish.com/" target="_blank" rel="noreferrer">打开</a>
+              </div>
+              <div class="source">
+                <div><strong>Language Reactor</strong><span class="tag">字幕精听</span><div class="small">看 YouTube/Netflix 时按字幕逐句暂停、回放、查词。</div></div>
+                <a href="https://dev.languagereactor.com/help/basic" target="_blank" rel="noreferrer">打开</a>
+              </div>
+              <div class="source">
+                <div><strong>English Trainer</strong><span class="tag">开源训练器</span><div class="small">把视频变成听写、跟读、发音训练，适合后续升级本应用参考。</div></div>
+                <a href="https://github.com/Oliviaviaviavia/english-trainer" target="_blank" rel="noreferrer">打开</a>
+              </div>
+              <div class="source">
+                <div><strong>Shadowing English</strong><span class="tag">本地跟读</span><div class="small">导入本地视频和字幕，逐句听、查词、跟读。</div></div>
+                <a href="https://github.com/TideSparrow/shadowing-english" target="_blank" rel="noreferrer">打开</a>
+              </div>
+              <div class="source">
+                <div><strong>Life Level-up Guide / English Path</strong><span class="tag">方法论</span><div class="small">你本地资料中提到的英语学习系统，适合看听力、口语和 AI 学英语章节。</div></div>
+                <a href="https://byoungd.github.io/up/en/" target="_blank" rel="noreferrer">打开</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const lessons = [
+      {
+        title: "第一次见面：让对方知道你是谁",
+        goal: "听懂对方的基本寒暄和身份问题，用 3 句介绍自己和公司。",
+        scene: "展会或线上会议开场，客户问你来自哪里、负责什么业务。",
+        source: "https://learningenglish.voanews.com/p/5644.html",
+        phrases: [
+          ["Nice to meet you. I am in charge of overseas sales.", "很高兴认识您。我负责海外销售。"],
+          ["We are a manufacturer based in Hangzhou, China.", "我们是一家位于中国杭州的制造商。"],
+          ["May I know which market you are mainly working in?", "方便了解一下您主要做哪个市场吗？"],
+          ["Let me briefly introduce our company.", "我简单介绍一下我们公司。"],
+          ["We mainly work with distributors and importers.", "我们主要服务经销商和进口商。"]
+        ]
+      },
+      {
+        title: "客户需求：听懂他到底想买什么",
+        goal: "练会询问产品、数量、用途和目标市场。",
+        scene: "客户停在展位前，对产品有兴趣，但需求还不清楚。",
+        source: "https://learningenglish.voanews.com/",
+        phrases: [
+          ["What kind of product are you looking for?", "您在找哪类产品？"],
+          ["What quantity are you looking at for the first order?", "首单您大概考虑多少数量？"],
+          ["Is this for retail, wholesale, or a project?", "这是用于零售、批发，还是项目？"],
+          ["Do you have a target price range?", "您有目标价格区间吗？"],
+          ["I can recommend a suitable model based on your market.", "我可以根据您的市场推荐合适型号。"]
+        ]
+      },
+      {
+        title: "产品介绍：用简单句讲清楚卖点",
+        goal: "用 60 秒介绍一个产品：是什么、适合谁、优势是什么。",
+        scene: "客户问：Can you introduce this product?",
+        source: "https://learningenglish.voanews.com/",
+        phrases: [
+          ["This is one of our best-selling models.", "这是我们最畅销的型号之一。"],
+          ["The main advantage is stable quality and fast delivery.", "主要优势是质量稳定、交期快。"],
+          ["It is suitable for supermarkets and online stores.", "它适合超市和线上店铺。"],
+          ["We can also customize the color and packaging.", "我们也可以定制颜色和包装。"],
+          ["I can send you the catalog after the meeting.", "会后我可以发您产品目录。"]
+        ]
+      },
+      {
+        title: "样品沟通：避免一开口就卡住",
+        goal: "听懂 sample、shipping cost、sample fee，并能说明流程。",
+        scene: "客户想先看样品，不确定样品费和运费。",
+        source: "https://youglish.com/pronounce/sample/english",
+        phrases: [
+          ["We can arrange samples for you first.", "我们可以先给您安排样品。"],
+          ["The sample fee can be refunded after the bulk order.", "样品费可以在大货订单后退还。"],
+          ["The shipping cost depends on your address.", "运费取决于您的收货地址。"],
+          ["Usually it takes three to five days to prepare the sample.", "通常样品准备需要三到五天。"],
+          ["Please send me your courier account if you have one.", "如果您有快递账号，请发给我。"]
+        ]
+      },
+      {
+        title: "MOQ：讲清楚起订量",
+        goal: "练 MOQ、trial order、mixed items 的听力和回答。",
+        scene: "客户问起订量，但希望先小单测试。",
+        source: "https://youglish.com/pronounce/MOQ/english",
+        phrases: [
+          ["Our MOQ is 500 pieces per model.", "我们的起订量是每个型号 500 件。"],
+          ["For a trial order, we can discuss a smaller quantity.", "试单的话，我们可以讨论更小数量。"],
+          ["Mixed items are acceptable for the first order.", "首单可以混款。"],
+          ["The unit price will be better with a larger quantity.", "数量越大，单价会更好。"],
+          ["Let me check the stock and confirm with you.", "我查一下库存后跟您确认。"]
+        ]
+      },
+      {
+        title: "报价：听懂价格相关问题",
+        goal: "练会 quote、EXW、FOB、valid、price list。",
+        scene: "客户要求报价和价格表。",
+        source: "https://youglish.com/pronounce/quotation/english",
+        phrases: [
+          ["Could you send me your detailed requirements?", "您可以把详细需求发我吗？"],
+          ["I will prepare a quotation for you today.", "我今天给您准备报价。"],
+          ["The price is based on FOB Ningbo.", "这个价格基于宁波 FOB。"],
+          ["The quotation is valid for seven days.", "这份报价有效期七天。"],
+          ["Please check the attached price list.", "请查看附件里的价格表。"]
+        ]
+      },
+      {
+        title: "交期：客户最容易追问的部分",
+        goal: "听懂 lead time、production schedule、urgent order。",
+        scene: "客户问多久能交货，能不能加急。",
+        source: "https://youglish.com/pronounce/lead%20time/english",
+        phrases: [
+          ["The lead time is around twenty days after deposit.", "收到定金后交期大约 20 天。"],
+          ["If the order is urgent, we can check the production schedule.", "如果订单紧急，我们可以查一下生产排期。"],
+          ["For stock items, we can ship much faster.", "现货产品可以更快发货。"],
+          ["We will update you during production.", "生产过程中我们会持续同步进度。"],
+          ["I will confirm the earliest delivery date with our factory.", "我会和工厂确认最早交货日期。"]
+        ]
+      },
+      {
+        title: "包装：从普通包装到定制包装",
+        goal: "练 packaging、carton、logo、label、instruction manual。",
+        scene: "客户问包装方式，是否能贴牌。",
+        source: "https://learnenglish.britishcouncil.org/free-resources/business",
+        phrases: [
+          ["Our standard packaging is one piece per box.", "我们的标准包装是一件一盒。"],
+          ["We can print your logo on the package.", "我们可以在包装上印您的 logo。"],
+          ["The carton size depends on the final quantity.", "纸箱尺寸取决于最终数量。"],
+          ["A customized label is possible.", "可以做定制标签。"],
+          ["Please send us your artwork file for checking.", "请把设计文件发给我们确认。"]
+        ]
+      },
+      {
+        title: "付款：把条件说得专业但不生硬",
+        goal: "练 payment terms、deposit、balance、bank transfer。",
+        scene: "客户问付款方式和定金比例。",
+        source: "https://learnenglish.britishcouncil.org/free-resources/business",
+        phrases: [
+          ["Our usual payment term is thirty percent deposit and balance before shipment.", "我们通常是 30% 定金，发货前付尾款。"],
+          ["We accept bank transfer.", "我们接受银行转账。"],
+          ["For long-term partners, we can discuss better terms.", "长期合作客户可以讨论更好的付款条件。"],
+          ["The order will start after we receive the deposit.", "收到定金后订单开始生产。"],
+          ["I will send you the proforma invoice.", "我会发您形式发票。"]
+        ]
+      },
+      {
+        title: "物流：不要被 shipping 问题绕晕",
+        goal: "练 sea freight、air freight、forwarder、destination port。",
+        scene: "客户问运输方式和费用。",
+        source: "https://www.businessenglishpod.com/",
+        phrases: [
+          ["Do you have your own freight forwarder?", "您有自己的货代吗？"],
+          ["We can ship by sea, by air, or by express.", "我们可以海运、空运或快递。"],
+          ["Please tell me your destination port.", "请告诉我您的目的港。"],
+          ["Sea freight is cheaper but takes longer.", "海运更便宜，但时间更长。"],
+          ["I can ask our forwarder to check the shipping cost.", "我可以让我们的货代查询运费。"]
+        ]
+      },
+      {
+        title: "质量：听懂客户担心点",
+        goal: "练 quality control、inspection、certificate、warranty。",
+        scene: "客户担心质量不稳定、认证不完整。",
+        source: "https://youglish.com/pronounce/quality%20control/english",
+        phrases: [
+          ["We have quality control before shipment.", "发货前我们有质量检查。"],
+          ["Each batch will be inspected carefully.", "每一批都会仔细检查。"],
+          ["We can provide the certificate if required.", "如有需要，我们可以提供证书。"],
+          ["The warranty period is one year.", "质保期是一年。"],
+          ["If there is a quality issue, please send us photos or videos.", "如果有质量问题，请发照片或视频给我们。"]
+        ]
+      },
+      {
+        title: "定制：既积极又不乱承诺",
+        goal: "练 custom、mold、sample time、extra cost。",
+        scene: "客户想改颜色、尺寸、包装或功能。",
+        source: "https://youglish.com/pronounce/customized/english",
+        phrases: [
+          ["Yes, customization is possible.", "可以，支持定制。"],
+          ["Could you share your design or reference picture?", "您可以分享设计图或参考图片吗？"],
+          ["There may be an extra cost for customization.", "定制可能会有额外费用。"],
+          ["We need to check with our engineer first.", "我们需要先和工程师确认。"],
+          ["The custom sample may take about ten days.", "定制样品大约需要 10 天。"]
+        ]
+      },
+      {
+        title: "客户异议：太贵了",
+        goal: "练 price objection，不急着降价，先解释价值。",
+        scene: "客户说：Your price is too high.",
+        source: "https://www.businessenglishpod.com/category/sales/",
+        phrases: [
+          ["I understand your concern about the price.", "我理解您对价格的顾虑。"],
+          ["Our price reflects the material and quality control.", "我们的价格体现了材料和质检标准。"],
+          ["May I know your target price?", "方便了解您的目标价吗？"],
+          ["We can review the specification and find another option.", "我们可以重新看规格，找另一个方案。"],
+          ["For a larger quantity, we may have room to adjust.", "如果数量更大，价格可能有调整空间。"]
+        ]
+      },
+      {
+        title: "客户异议：交期太长",
+        goal: "练 delivery objection，给替代方案。",
+        scene: "客户需要更快交货。",
+        source: "https://www.businessenglishpod.com/category/meetings/",
+        phrases: [
+          ["I understand the timeline is important.", "我理解时间很重要。"],
+          ["Let me check if we have stock available.", "我确认一下是否有现货。"],
+          ["We can split the shipment if that helps.", "如果有帮助，我们可以分批发货。"],
+          ["Another option is to choose a standard model.", "另一个方案是选择标准型号。"],
+          ["I will give you a realistic delivery plan.", "我会给您一个真实可执行的交付计划。"]
+        ]
+      },
+      {
+        title: "电话/视频会议：听懂常见开会句",
+        goal: "练会议开场、确认声音、请求重复。",
+        scene: "线上会议刚开始，网络和语音不稳定。",
+        source: "https://www.businessenglishpod.com/category/teleconferencing/",
+        phrases: [
+          ["Can you hear me clearly?", "您能听清楚我说话吗？"],
+          ["Sorry, could you repeat that?", "抱歉，您可以重复一下吗？"],
+          ["Let me share my screen.", "我来共享屏幕。"],
+          ["I will take notes and follow up after the meeting.", "我会记录，会后跟进。"],
+          ["Could you speak a little slower, please?", "您可以稍微说慢一点吗？"]
+        ]
+      },
+      {
+        title: "展会交流：快速筛选真实客户",
+        goal: "练 trade show、booth、catalog、business card。",
+        scene: "客户在展会现场停留 2 分钟，你要快速判断价值。",
+        source: "https://youglish.com/pronounce/trade%20show/english",
+        phrases: [
+          ["Welcome to our booth.", "欢迎来到我们的展位。"],
+          ["Here is our latest catalog.", "这是我们的最新目录。"],
+          ["May I have your business card?", "可以给我一张您的名片吗？"],
+          ["Are you an importer, distributor, or retailer?", "您是进口商、经销商，还是零售商？"],
+          ["I will follow up with you after the show.", "展会后我会继续跟进您。"]
+        ]
+      },
+      {
+        title: "工厂实力：讲清楚你们为什么可靠",
+        goal: "练 factory capacity、production line、experience。",
+        scene: "客户想判断你们是不是靠谱供应商。",
+        source: "https://learnenglish.britishcouncil.org/free-resources/business",
+        phrases: [
+          ["We have over ten years of production experience.", "我们有十多年生产经验。"],
+          ["Our factory has three production lines.", "我们工厂有三条生产线。"],
+          ["Our monthly capacity is around fifty thousand pieces.", "我们的月产能约五万件。"],
+          ["We work with customers in Europe and North America.", "我们服务欧洲和北美客户。"],
+          ["You are welcome to visit our factory.", "欢迎您来参观我们的工厂。"]
+        ]
+      },
+      {
+        title: "售后与问题处理",
+        goal: "练 complaint、replacement、solution、responsibility。",
+        scene: "客户反馈货物有问题，你需要先稳住对方。",
+        source: "https://www.businessenglishpod.com/category/customer-service/",
+        phrases: [
+          ["Thank you for letting us know.", "谢谢您告诉我们这个情况。"],
+          ["We are sorry for the inconvenience.", "给您带来不便，我们很抱歉。"],
+          ["Could you send photos and the order number?", "您可以发照片和订单号吗？"],
+          ["We will check the issue and offer a solution.", "我们会核查问题并提供解决方案。"],
+          ["If it is our responsibility, we will arrange a replacement.", "如果是我们的责任，我们会安排补发。"]
+        ]
+      },
+      {
+        title: "会后跟进：把沟通变成下一步",
+        goal: "练 follow up、summary、next step、confirm。",
+        scene: "会议结束后，你要总结并推进报价/样品/资料。",
+        source: "https://learnenglish.britishcouncil.org/skills/writing/pre-intermediate-a2/an-email-to-confirm-an-appointment",
+        phrases: [
+          ["Thank you for your time today.", "感谢您今天的时间。"],
+          ["Here is a quick summary of our discussion.", "这是我们沟通内容的简要总结。"],
+          ["I will send the quotation and catalog shortly.", "我稍后会发送报价和目录。"],
+          ["Please confirm the quantity and packaging requirements.", "请确认数量和包装要求。"],
+          ["Looking forward to your feedback.", "期待您的反馈。"]
+        ]
+      },
+      {
+        title: "完整模拟：客户第一次询盘",
+        goal: "把前面 19 天串起来，完成 3 分钟客户沟通。",
+        scene: "客户第一次联系你，从产品、价格、样品、交期问到下一步。",
+        source: "https://chatgpt.com/",
+        phrases: [
+          ["Could you tell me more about your requirement?", "您可以多介绍一下您的需求吗？"],
+          ["Based on your market, I recommend this model.", "根据您的市场，我推荐这个型号。"],
+          ["I will prepare a quotation with MOQ and lead time.", "我会准备包含起订量和交期的报价。"],
+          ["We can start with samples before the bulk order.", "大货前可以先从样品开始。"],
+          ["Let us keep in touch and move to the next step.", "我们保持沟通，推进下一步。"]
+        ]
+      }
+    ];
+
+    const stateKey = "tradeEnglish20State";
+    const notesKey = "tradeEnglish20Notes";
+    let selectedDay = 0;
+    let timerRemaining = 600;
+    let timerHandle = null;
+    let recognition = null;
+
+    function loadState() {
+      try {
+        return JSON.parse(localStorage.getItem(stateKey)) || { startDate: null, done: [] };
+      } catch {
+        return { startDate: null, done: [] };
+      }
+    }
+
+    function saveState(state) {
+      localStorage.setItem(stateKey, JSON.stringify(state));
+    }
+
+    function todayIndex(state) {
+      if (!state.startDate) return selectedDay;
+      const start = new Date(state.startDate + "T00:00:00");
+      const now = new Date();
+      const current = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const diff = Math.floor((current - start) / 86400000);
+      return Math.max(0, Math.min(lessons.length - 1, diff));
+    }
+
+    function isoToday() {
+      const d = new Date();
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth() + 1).padStart(2, "0");
+      const dd = String(d.getDate()).padStart(2, "0");
+      return `${yyyy}-${mm}-${dd}`;
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById("toast");
+      toast.textContent = text;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 1800);
+    }
+
+    function speak(text, rate = 0.82) {
+      if (!("speechSynthesis" in window)) {
+        showToast("当前浏览器不支持朗读");
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US";
+      utterance.rate = rate;
+      utterance.pitch = 1;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function promptForLesson(lesson, dayNumber) {
+      const phraseText = lesson.phrases.map((p, i) => `${i + 1}. ${p[0]}`).join("\n");
+      return `You are my overseas customer. I am a Chinese export salesperson. Please help me practice spoken English for 10 minutes.\n\nToday's scene: ${lesson.scene}\nToday's goal: ${lesson.goal}\n\nUse simple business English. Ask me one question at a time. After I answer, correct only the most important 1-2 problems, then give me a more natural version. If I get stuck, give me a short example answer.\n\nUseful sentences for Day ${dayNumber}:\n${phraseText}`;
+    }
+
+    function render() {
+      const state = loadState();
+      const lesson = lessons[selectedDay];
+      const dayNumber = selectedDay + 1;
+      const doneCount = state.done.length;
+
+      document.getElementById("startLabel").textContent = state.startDate ? `开始日 ${state.startDate}` : "未设置开始日";
+      document.getElementById("doneLabel").textContent = `完成 ${doneCount}/20`;
+      document.getElementById("progressFill").style.width = `${doneCount / lessons.length * 100}%`;
+
+      const dayList = document.getElementById("dayList");
+      dayList.innerHTML = "";
+      lessons.forEach((_, index) => {
+        const btn = document.createElement("button");
+        btn.className = "day-btn";
+        btn.textContent = index + 1;
+        if (index === selectedDay) btn.classList.add("active");
+        if (state.done.includes(index)) btn.classList.add("done");
+        btn.setAttribute("aria-label", `第 ${index + 1} 天`);
+        btn.addEventListener("click", () => {
+          selectedDay = index;
+          timerReset();
+          render();
+        });
+        dayList.appendChild(btn);
+      });
+
+      document.getElementById("dayMeta").textContent = `Day ${dayNumber} / 20`;
+      document.getElementById("lessonTitle").textContent = lesson.title;
+      document.getElementById("lessonGoal").textContent = lesson.goal;
+      document.getElementById("scenario").textContent = lesson.scene;
+      document.getElementById("sourceLink").href = lesson.source;
+      document.getElementById("completeBtn").textContent = state.done.includes(selectedDay) ? "已完成，取消完成" : "完成今天";
+
+      const phraseGrid = document.getElementById("phraseGrid");
+      phraseGrid.innerHTML = "";
+      lesson.phrases.forEach(([en, zh]) => {
+        const row = document.createElement("div");
+        row.className = "phrase";
+        const text = document.createElement("div");
+        text.innerHTML = `<div class="en">${en}</div><div class="zh">${zh}</div>`;
+        const btn = document.createElement("button");
+        btn.textContent = "朗读";
+        btn.addEventListener("click", () => speak(en));
+        row.append(text, btn);
+        phraseGrid.appendChild(row);
+      });
+
+      const prompt = promptForLesson(lesson, dayNumber);
+      document.getElementById("aiPromptPreview").textContent = prompt;
+      document.getElementById("notes").value = JSON.parse(localStorage.getItem(notesKey) || "{}")[selectedDay] || "";
+    }
+
+    function copyCurrentPrompt() {
+      const lesson = lessons[selectedDay];
+      navigator.clipboard.writeText(promptForLesson(lesson, selectedDay + 1)).then(
+        () => showToast("已复制陪练提示"),
+        () => showToast("复制失败，请手动选择文本")
+      );
+    }
+
+    function timerRender() {
+      const minutes = Math.floor(timerRemaining / 60);
+      const seconds = timerRemaining % 60;
+      document.getElementById("timer").textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    }
+
+    function timerStartPause() {
+      const timerBtn = document.getElementById("timerBtn");
+      if (timerHandle) {
+        clearInterval(timerHandle);
+        timerHandle = null;
+        timerBtn.textContent = "继续";
+        return;
+      }
+      timerBtn.textContent = "暂停";
+      timerHandle = setInterval(() => {
+        timerRemaining -= 1;
+        if (timerRemaining <= 0) {
+          timerRemaining = 0;
+          clearInterval(timerHandle);
+          timerHandle = null;
+          timerBtn.textContent = "开始";
+          showToast("10 分钟到，今天可以收工");
+        }
+        timerRender();
+      }, 1000);
+    }
+
+    function timerReset() {
+      clearInterval(timerHandle);
+      timerHandle = null;
+      timerRemaining = 600;
+      document.getElementById("timerBtn").textContent = "开始";
+      timerRender();
+    }
+
+    function initSpeechRecognition() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) return null;
+      const rec = new SpeechRecognition();
+      rec.lang = "en-US";
+      rec.continuous = false;
+      rec.interimResults = false;
+      rec.onresult = event => {
+        const transcript = Array.from(event.results).map(result => result[0].transcript).join(" ");
+        const notes = document.getElementById("notes");
+        notes.value = `${notes.value}${notes.value ? "\n" : ""}${transcript}`;
+        document.getElementById("speechStatus").textContent = "已识别一段口语。";
+      };
+      rec.onerror = () => {
+        document.getElementById("speechStatus").textContent = "识别失败，可以直接手动输入。";
+      };
+      rec.onend = () => {
+        document.getElementById("speechBtn").textContent = "开始识别";
+      };
+      return rec;
+    }
+
+    document.getElementById("setStart").addEventListener("click", () => {
+      const state = loadState();
+      state.startDate = isoToday();
+      saveState(state);
+      selectedDay = todayIndex(state);
+      render();
+      showToast("已从今天开始计算");
+    });
+
+    document.getElementById("todayBtn").addEventListener("click", () => {
+      selectedDay = todayIndex(loadState());
+      timerReset();
+      render();
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      if (!confirm("确定清空 20 天进度和笔记吗？")) return;
+      localStorage.removeItem(stateKey);
+      localStorage.removeItem(notesKey);
+      selectedDay = 0;
+      timerReset();
+      render();
+    });
+
+    document.getElementById("timerBtn").addEventListener("click", timerStartPause);
+    document.getElementById("timerReset").addEventListener("click", timerReset);
+
+    document.getElementById("playAll").addEventListener("click", () => {
+      const text = lessons[selectedDay].phrases.map(p => p[0]).join(". ");
+      speak(text, 0.78);
+    });
+
+    document.getElementById("copyPrompt").addEventListener("click", copyCurrentPrompt);
+    document.getElementById("copyPrompt2").addEventListener("click", copyCurrentPrompt);
+
+    document.getElementById("completeBtn").addEventListener("click", () => {
+      const state = loadState();
+      if (state.done.includes(selectedDay)) {
+        state.done = state.done.filter(day => day !== selectedDay);
+      } else {
+        state.done.push(selectedDay);
+        state.done.sort((a, b) => a - b);
+      }
+      saveState(state);
+      render();
+    });
+
+    document.getElementById("saveNotes").addEventListener("click", () => {
+      const notes = JSON.parse(localStorage.getItem(notesKey) || "{}");
+      notes[selectedDay] = document.getElementById("notes").value;
+      localStorage.setItem(notesKey, JSON.stringify(notes));
+      showToast("记录已保存");
+    });
+
+    document.getElementById("clearNotes").addEventListener("click", () => {
+      document.getElementById("notes").value = "";
+      const notes = JSON.parse(localStorage.getItem(notesKey) || "{}");
+      delete notes[selectedDay];
+      localStorage.setItem(notesKey, JSON.stringify(notes));
+      showToast("本页记录已清空");
+    });
+
+    document.getElementById("speechBtn").addEventListener("click", () => {
+      if (!recognition) recognition = initSpeechRecognition();
+      if (!recognition) {
+        document.getElementById("speechStatus").textContent = "当前浏览器不支持语音识别，建议用 Chrome 或 Edge。";
+        return;
+      }
+      document.getElementById("speechBtn").textContent = "正在听...";
+      document.getElementById("speechStatus").textContent = "请用英文说一句今天的内容。";
+      recognition.start();
+    });
+
+    selectedDay = todayIndex(loadState());
+    timerRender();
+    render();
+  </script>
+</body>
+</html>
