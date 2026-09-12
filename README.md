@@ -2,6 +2,8 @@
 
 TradeTalk 10 is a lightweight 20-day English listening and speaking trainer for export sales people.
 
+Live app: https://strongqiang100.github.io/tradetalk-10/
+
 The goal is simple: open one page, follow today's 10-minute card, and practice the exact situations that happen in foreign trade conversations: product introduction, MOQ, quotation, sample, lead time, packaging, payment, shipping, quality, customization, objections, trade shows, and follow-up.
 
 ## Why This Exists
